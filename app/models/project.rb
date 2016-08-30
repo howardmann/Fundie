@@ -16,7 +16,6 @@ class Project < ActiveRecord::Base
   validates :name, presence: true
   validates :description, length: {minimum: 10}
   validates :target_amount, numericality: {greater_than: 0, less_than_or_equal_to: 10000}
-  validates :category_ids, length: { minimum: 1, maximum: 3}
   validates :deadline, presence: true
 
 

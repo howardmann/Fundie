@@ -16,8 +16,9 @@
     <%= f.label :description %><br>
     <%= f.text_area :description, cols: 40, rows: 7 %>
   </p>
-  <p>Select categories (up to three):</p>
+  <p>Select categories:</p>
   <p>
+    <%= hidden_field_tag "project[category_ids][]", Category.find_by(:name => "other").id %>
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </p>
   <p>
