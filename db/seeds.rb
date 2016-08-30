@@ -16,7 +16,7 @@ wolf = User.create :email => "wolf@ga.co", :name => "wolf", :password => 'chicke
 
 pete = User.create :email => "pete@ga.co", :name => "pete", :password => 'chicken', :password_confirmation => 'chicken'
 
-puts "\nCreate User test").ljust(60,'.')
+puts "\nCreate User test"
 p "User count: #{User.all.count}"
 p "User emails : #{User.all.pluck(:email)}"
 p "Howie password is: #{howie.password_digest}"
@@ -65,7 +65,7 @@ p6 = Project.create({
 })
 badger.projects << p6
 
-puts "\nCreate Project test").ljust(60,'.')
+puts "\nCreate Project test"
 p "Project count: #{Project.all.count}"
 p "Project names: #{Project.all.pluck(:name)}"
 p "Howie's projects: #{howie.projects.all.pluck(:name)}"
@@ -102,7 +102,7 @@ pledge4 = badger.pledges.create({
   :comment => "I love speaker stools"
 })
 
-puts "\nCreate Pledges test").ljust(60,'.')
+puts "\nCreate Pledges test"
 p "Pledge count: #{Pledge.all.count}"
 p "pledge1: #{pledge1.user.name} pledges $#{pledge1.amount.round} for project #{pledge1.project.name} by #{pledge1.project.user.name}"
 p "pledge2: #{pledge2.user.name} pledges $#{pledge2.amount.round} for project #{pledge2.project.name} by #{pledge2.project.user.name}"
@@ -110,7 +110,7 @@ p "pledge3: #{pledge3.user.name} pledges $#{pledge3.amount.round} for project #{
 p "pledge4: #{pledge4.user.name} pledges $#{pledge4.amount.round} for project #{pledge4.project.name} by #{pledge4.project.user.name}"
 
 ##### PROJECT PLEDGE TEST
-puts "\nProject pledge vs target amount test").ljust(60,'.')
+puts "\nProject pledge vs target amount test"
 p "Project 1: #{p2.name} total pledged: #{p1.pledges.sum(:amount)} vs. target of #{p1.target_amount}"
 p "Project 2: #{p2.name} total pledged: #{p2.pledges.sum(:amount)} vs. target of #{p2.target_amount}"
 p "Project 3: #{p3.name} total pledged: #{p3.pledges.sum(:amount)} vs. target of #{p3.target_amount}"
@@ -134,7 +134,7 @@ technology = Category.create :name => "technology"
 theater = Category.create :name => "theatre"
 other = Category.create :name => "other"
 
-puts "\nCategory create test").ljust(60,'.')
+puts "\nCategory create test"
 p "Category count: #{Category.all.count}"
 p "Category names include: #{Category.all.pluck(:name)}"
 
