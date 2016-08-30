@@ -1,0 +1,48 @@
+<% unless check_project(@project) %>
+  <h1><%= "#{@project.name} by #{@project.user.name}" %></h1>
+<% else %>
+  <h1>Your project: <%= @project.name %></h1>
+<% end %>
+
+<hr>
+<h3>Project details:</h3>
+<p>Name: <%= @project.name %></p>
+<p>Creator: <%= @project.user.name %></p>
+<p>Target amount: <%= number_to_currency(@project.target_amount) %></p>
+<p>Description: <%= @project.description %></p>
+<p>Categories: <%= format_categories(@project) %></p>
+
+<% if check_project(@project) %>
+  <div class="controls">
+    <%= link_to 'Edit', edit_project_path(@project) %> |
+    <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+<% end %>
+
+<hr>
+
+<h3>Pledge summary:</h3>
+
+<% if check_project(@project) || @project.pledges? %>
+  <ul>
+    <li><%= "#{format_percent(@project)} funded of #{format_target(@project)} goal" %></li>
+    <li><%= "#{format_shortfall(@project)}" %></li>
+    <li><%= "#{format_pledged(@project)} pledged by #{format_backers(@project)}:" %></li>
+    <ul>
+      <% @project.pledges.each do |el| %>
+        <li><%= "#{number_to_currency(el.amount)} from #{el.user.name}" %></li>
+      <% end %>
+    </ul>
+  </ul>
+<% end %>
+
+
+<% unless check_project(@project) %>
+  <% if check_pledge(@project) %>
+    <%= link_to "You have pledged to this Project", pledge_path(@current_user.pledges.find_by(:project_id => @project.id)) %>
+  <% elsif @project.pledges? %>
+    <%= link_to "Back this project", new_project_pledge_path(@project) %>
+  <% else %>
+    <%= link_to "Be the first to back this project", new_project_pledge_path(@project) %>
+  <% end %>
+<% end %>

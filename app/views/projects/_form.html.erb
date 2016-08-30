@@ -1,0 +1,22 @@
+<%= form_for(@project) do |f| %>
+  <%= render "shared/errors", object: @project %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :target_amount %><br>
+    <%= f.number_field :target_amount %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, cols: 40, rows: 7 %>
+  </p>
+  <p>
+    <%= hidden_field_tag "project[category_ids][]", Category.find_by(:name => "other").id %>
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

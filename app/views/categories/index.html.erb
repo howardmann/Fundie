@@ -1,0 +1,6 @@
+<h1>All project categories</h1>
+<ul>
+  <% @categories.each do |el| %>
+    <li><%= link_to "#{el.name.titleize}", category_path(el) %></li>
+  <% end %>
+</ul>

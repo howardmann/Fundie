@@ -1,0 +1,33 @@
+<h1>All Projects</h1>
+
+<h3>Projects by other users:</h3>
+<ul>
+  <% @projects.each do |el| %>
+    <% unless check_project(el) %>
+      <li><%= link_to "#{el.name} by #{el.user.name}", project_path(el) %></li>
+      <ul>
+        <% if el.pledges? %>
+          <li><%= "#{format_percent(el)} funded of #{format_target(el)} goal" %></li>
+          <li><%= "#{format_pledged(el)} pledged by #{format_backers(el)}" %></li>
+          <li><%= "#{format_shortfall(el)}" %></li>
+        <% else %>
+          <li><%= link_to "Be the first to back this project", project_path(el) %></li>
+        <% end %>
+      </ul><br>
+    <% end %>
+  <% end %>
+</ul>
+
+<% if @current_user %>
+  <h3>Projects by you:</h3>
+  <ul>
+    <% @projects.each do |el| %>
+      <% if check_project(el) %>
+        <li><%= link_to el.name, project_path(el) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <%= link_to "New project", new_project_path %>
+<% else %>
+  <%= link_to "Join the fun, start a new Project", new_project_path %>
+<% end %>

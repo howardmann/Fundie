@@ -1,0 +1,8 @@
+<h1><%= @category.name.titleize %> projects:</h1>
+<ul>
+  <% @category.projects.each do |el| %>
+    <li><%= link_to el.name, project_path(el) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Add a new #{@category.name} project", new_project_path %>

@@ -1,0 +1,53 @@
+<h1>Users show: <%= @user.name %></h1>
+
+<!-- User -->
+<hr>
+<h3>User details:</h3>
+<ul>
+  <li>Name: <%= @user.name %></li>
+  <li>Email: <%= @user.email %></li>
+  <li>Member since: <%=" #{time_ago_in_words(@user.created_at)} ago" %></li>
+</ul>
+
+<% if own_user? %>
+  <div class="controls">
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+<% end %>
+<hr>
+<!-- User Project -->
+<h3>Project details:</h3>
+
+<% @user.projects.each do |el| %>
+  <ul>
+    <li>Name: <%= link_to el.name, project_path(@user.projects.find(el)) %></li>
+    <li>Created: <%= "#{time_ago_in_words(el.created_at)} ago" %></li>
+    <li>Target: <%= format_target(el) %></li>
+    <li>Pledged: <%= format_pledged(el) %></li>
+    <li>Shortfall: <%= format_shortfall(el) %></li>
+
+    <% if own_user? %>
+      <div class="controls">
+        <%= link_to 'Edit', edit_project_path(el) %> |
+        <%= link_to 'Delete', project_path(el), method: :delete, data: {confirm: "Are you sure?"} %>
+      </div>
+    <% end %>
+
+  </ul>
+
+<% end %>
+
+<%= link_to "New Project", new_project_path %><br>
+
+<hr>
+<!-- User Pledges -->
+<h3>Pledge details:</h3>
+
+<% @user.pledges.each do |el| %>
+  <ul>
+    <li><%= link_to "#{number_to_currency(el.amount)} to #{el.project.user.name} for #{el.project.name}", pledge_path(el) %></li>
+  </ul>
+<% end %>
+
+<%= link_to "Back a new project", custom_find_pledge_path %>

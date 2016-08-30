@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kickstarter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav>
+    <!-- Static pages -->
+    <%= link_to "HOME", root_path %><br>
+    <!-- User signup -->
+    <%= link_to "All users", users_path %> |
+    <% if @current_user %>
+      <%= link_to "View account", user_path(@current_user)  %><br>
+    <% else %>
+      <%= link_to "New user", new_user_path %><br>
+    <% end %>
+    <!-- User login -->
+    <% unless @current_user %>
+      <%= link_to "Login", login_path %><br>
+    <% else %>
+      <%= link_to "Logout", logout_path, method: :delete %><br>
+    <% end %>
+    <!-- Project -->
+    <%= link_to "All Projects", projects_path %> |
+    <%= link_to "New Project", new_project_path %><br>
+    <!-- Pledges -->
+    <%= link_to "All Pledges", pledges_path %> |
+    <%= link_to "New Pledge", custom_find_pledge_path %><br>
+    <!-- Categories -->
+    <%= link_to "All Categories", categories_path %>
+  </nav>
+
+  <!-- Session id -->
+  <% if @current_user %>
+    <p>@current_user: <%= @current_user.name %></p>
+  <% else %>
+    <p>Login above</p>
+  <% end %>
+
+  <!-- FLASH MESSAGE -->
+  <% if flash[:success] %>
+    <p style = "color: green"><%= flash[:success] %></p>
+  <% end %>
+  <% if flash[:error] %>
+    <p style = "color: red"><%= flash[:error] %></p>
+  <% end %>
+
+  <!-- APP SUMMARY -->
+  <%= format_app_summary %>
+
+
+  <%= yield %>
+
+</body>
+</html>

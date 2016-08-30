@@ -1,0 +1,10 @@
+<h1>Pledge for <%= @pledge.project.name %></h1>
+<p>Project: <%= link_to @pledge.project.name, project_path(@pledge.project) %></p>
+<p>Creator: <%= @pledge.project.user.name %></p>
+<p>Amount: <%= number_to_currency(@pledge.amount) %></p>
+<p>Comment: <%= @pledge.comment %></p>
+
+<div class="controls">
+  <%= link_to "Edit", edit_pledge_path %> |
+  <%= link_to "Delete", pledge_path(@pledge), method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>

@@ -1,0 +1,17 @@
+<% if object.errors.any? %>
+<section id="errors">
+  <header>
+    <h3>
+      <%= object.class.name.titleize %> could not be saved.
+    </h3>
+    <h4>
+      Please correct the following <%= pluralize(object.errors.count, "error") %>:
+    </h4>
+  </header>
+  <ol>
+    <% object.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</section>
+<% end %>

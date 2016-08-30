@@ -1,0 +1,14 @@
+<h1>Find a new project to pledge on</h1>
+
+<h3>Back a new project:</h3>
+<ul>
+  <% @projects.each do |el| %>
+    <% unless check_project(el) %>
+      <% if check_pledge(el) %>
+        <li><%= link_to "#{el.name} by #{el.user.name} (You backed this project!!)", project_path(el) %></li>
+      <% else %>
+        <li><%= link_to "#{el.name} by #{el.user.name}", project_path(el) %></li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
