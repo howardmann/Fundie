@@ -10,4 +10,18 @@
 
 class Category < ActiveRecord::Base
   has_and_belongs_to_many :projects
+
+
+  # LOGIC
+  def live_projects
+    projects.select do |el|
+      el.expired? == false
+    end
+  end
+
+  def funded_projects
+    projects.select do |el|
+      el.shortfall? == false
+    end
+  end
 end

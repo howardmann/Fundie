@@ -5,16 +5,22 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
   <nav>
-    <!-- Static pages -->
-    <%= link_to "HOME", root_path %><br>
+    <!-- Main pages -->
+    <%= link_to "HOME", root_path %> |
+    <%= link_to "DISCOVER", categories_path %> |
+    <%= link_to "CREATE", new_project_path %><br>
+    <!-- Leaderboard -->
+    <%= link_to "Project leaderboard", projects_path %> |
+    <%= link_to "Pledge leaderboard", pledges_path %><br>
     <!-- User signup -->
     <% if @current_user %>
-      <%= link_to "View account", user_path(@current_user)  %><br>
+      <%= link_to "View account", user_path(@current_user)  %> |
     <% else %>
-      <%= link_to "New user", new_user_path %><br>
+      <%= link_to "New user", new_user_path %> |
     <% end %>
     <!-- User login -->
     <% unless @current_user %>
@@ -22,21 +28,13 @@
     <% else %>
       <%= link_to "Logout", logout_path, method: :delete %><br>
     <% end %>
-    <!-- Project -->
-    <%= link_to "All Projects", projects_path %> |
-    <%= link_to "New Project", new_project_path %><br>
-    <!-- Pledges -->
-    <%= link_to "All Pledges", pledges_path %> |
-    <%= link_to "New Pledge", custom_find_pledge_path %><br>
-    <!-- Categories -->
-    <%= link_to "All Categories", categories_path %>
   </nav>
 
   <!-- Session id -->
   <% if @current_user %>
-    <p>@current_user: <%= @current_user.name %></p>
+    <p><em>@current_user: <%= @current_user.name %></em></p>
   <% else %>
-    <p>Login above</p>
+    <p><em>Login above</em></p>
   <% end %>
 
   <!-- FLASH MESSAGE -->
@@ -48,7 +46,7 @@
   <% end %>
 
   <!-- APP SUMMARY -->
-  <%= format_app_summary %>
+  <p>Live feed: <%= format_app_summary %></p>
 
 
   <%= yield %>

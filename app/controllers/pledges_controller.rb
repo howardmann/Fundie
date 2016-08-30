@@ -1,9 +1,9 @@
 class PledgesController < ApplicationController
-  before_action :require_login, :only => [:new, :edit]
-  before_action :require_current_project, :only => [:new, :edit] 
+  before_action :require_login, :only => [:show, :new, :edit]
+  before_action :require_current_project, :only => [:new, :edit]
 
   def index
-    @pledges = Pledge.all
+    @pledges = Pledge.all.order('amount desc')
   end
 
   def show

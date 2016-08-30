@@ -3,7 +3,7 @@
 <h3>Pledges from other users:</h3>
 <ul>
   <% @pledges.each do |el| %>
-    <% unless check_pledge(el) %>
+    <% unless check_pledge(el.project) %>
       <li><%= link_to "#{number_to_currency(el.amount)} from #{el.user.name} to #{el.project.name} by #{el.project.user.name}", project_path(el.project) %></li>
     <% end %>
   <% end %>
@@ -13,7 +13,7 @@
   <h3>Your pledges:</h3>
   <ul>
     <% @pledges.each do |el| %>
-      <% if check_pledge(el) %>
+      <% if check_pledge(el.project) %>
         <li><%= link_to "#{number_to_currency(el.amount)} from #{el.user.name} to #{el.project.name} by #{el.project.user.name}", project_path(el.project) %></li>
       <% end %>
     <% end %>

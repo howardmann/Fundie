@@ -27,8 +27,7 @@ p1 = Project.create({
   :name => "CoffeeMe",
   :target_amount => 1000,
   :deadline => '01-09-2016',
-  :description => "Coffee cups for babies",
-  :image => "http://fillmurray.com/200/200"
+  :description => "Coffee cups for babies"
 })
 howie.projects << p1
 
@@ -36,8 +35,7 @@ p2 = Project.create({
   :name => "Keyboard",
   :target_amount => 5000,
   :deadline => '03-10-2016',
-  :description => "Electronic keyboard for animal sounds",
-  :image => "http://fillmurray.com/200/204"
+  :description => "Electronic keyboard for animal sounds"
 })
 badger.projects << p2
 
@@ -45,8 +43,7 @@ p3 = Project.create({
   :name => "Speaker",
   :target_amount => 500,
   :deadline => '03-12-2016',
-  :description => "Motivational speaking stool",
-  :image => "http://fillmurray.com/200/203"
+  :description => "Motivational speaking stool"
 })
 wolf.projects << p3
 
@@ -54,8 +51,7 @@ p4 = Project.create({
   :name => "Chariot",
   :target_amount => 6000,
   :deadline => '03-01-2017',
-  :description => "TV series where horses ride humans",
-  :image => "http://fillmurray.com/200/202"
+  :description => "TV series where horses ride humans"
 })
 pete.projects << p4
 
@@ -63,8 +59,7 @@ p5 = Project.create({
   :name => "Fubar",
   :target_amount => 4000,
   :deadline => '07-06-2016',
-  :description => "Hair salon which does the exact opposite of what you ask for",
-  :image => "http://fillmurray.com/200/201"
+  :description => "Hair salon which does the exact opposite of what you ask for"
 })
 howie.projects << p5
 
@@ -72,8 +67,7 @@ p6 = Project.create({
   :name => "Snaptop",
   :target_amount => 3000,
   :deadline => '03-07-2016',
-  :description => "Laptop which snaps shut randomly five times a day",
-  :image => "http://www.placecage.com/200/200"
+  :description => "Laptop which snaps shut randomly five times a day"
 })
 badger.projects << p6
 

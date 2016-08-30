@@ -1,8 +1,21 @@
 <h1><%= @category.name.titleize %> projects:</h1>
-<ul>
-  <% @category.projects.each do |el| %>
-    <li><%= link_to el.name, project_path(el) %></li>
-  <% end %>
-</ul>
+
+<% if @category.live_projects.count > 0 %>
+  <h3>Live projects:</h3>
+  <ul>
+    <% @category.live_projects.each do |el| %>
+      <li><%= link_to el.name, project_path(el) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @category.funded_projects.count > 0 %>
+  <h3>Funded projects:</h3>
+  <ul>
+    <% @category.funded_projects.each do |el| %>
+      <li><%= link_to el.name, project_path(el) %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to "Add a new #{@category.name} project", new_project_path %>

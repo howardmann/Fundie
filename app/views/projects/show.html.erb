@@ -6,14 +6,45 @@
 
 <hr>
 <h3>Project details:</h3>
-<p>Name: <%= @project.name %></p>
-<p>Creator: <%= @project.user.name %></p>
-<p>Target amount: <%= number_to_currency(@project.target_amount) %></p>
-<p>Deadline: <%= @project.deadline.strftime("%a %d %b, %Y") %></p>
-<p>Time remaining: <%= format_deadline(@project) %></p>
-<p>Description: <%= @project.description %></p>
-<p>Categories: <%= format_categories(@project) %></p>
-<%= image_tag(@project.image) %>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%= @project.name %></td>
+  </tr>
+  <tr>
+    <td>Creator:</td>
+    <td><%= link_to @project.user.name, user_path(@project.user) %></td>
+  </tr>
+  <tr>
+    <td>Target amount:</td>
+    <td><%= format_target(@project) %></td>
+  </tr>
+  <tr>
+    <td>Time remaining:</td>
+    <td><%= format_deadline(@project) %></td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td><%= @project.description %></td>
+  </tr>
+  <tr>
+    <td>Categories:</td>
+    <td>
+      <% @project.categories.each do |el| %>
+        <%= link_to "#{el.name.titleize}", category_path(el) %> |
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Created:</td>
+    <td><%= format_created(@project) %></td>
+  </tr>
+  <tr>
+    <td>Last updated:</td>
+    <td><%= format_updated(@project) %></td>
+  </tr>
+</table>
+
 
 <% if check_project(@project) %>
   <div class="controls">
@@ -27,16 +58,27 @@
 <h3>Pledge summary:</h3>
 
 <% if check_project(@project) || @project.pledges? %>
-  <ul>
-    <li><%= "#{format_percent(@project)} funded of #{format_target(@project)} goal" %></li>
-    <li><%= "#{format_shortfall(@project)}" %></li>
-    <li><%= "#{format_pledged(@project)} pledged by #{format_backers(@project)}:" %></li>
-    <ul>
-      <% @project.pledges.each do |el| %>
-        <li><%= "#{number_to_currency(el.amount)} from #{el.user.name}" %></li>
-      <% end %>
-    </ul>
-  </ul>
+
+  <table>
+    <tr>
+      <td>Status:</td>
+      <td><%= format_shortfall(@project) %></td>
+    </tr>
+    <tr>
+      <td>Goal:</td>
+      <td><%= format_goal(@project) %></td>
+    </tr>
+    <tr>
+      <td>Backers:</td>
+      <td><%= "#{format_pledged(@project)} pledged by #{format_backers(@project)}:" %>
+        <ul>
+          <% @project.order_pledges.each do |pledge| %>
+            <li><%= "#{number_to_currency(pledge.amount, precision: 0)} from "%><%= link_to pledge.user.name, user_path(pledge.user) %></li>
+          <% end %>
+        </ul>
+    </td>
+    </tr>
+  </table>
 <% end %>
 
 <% unless check_project(@project) %>

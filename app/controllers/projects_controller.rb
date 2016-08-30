@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @projects = Project.includes(:pledges).order("pledges.amount asc")
   end
 
   def show
