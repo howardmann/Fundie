@@ -13,6 +13,7 @@
 <p>Time remaining: <%= format_deadline(@project) %></p>
 <p>Description: <%= @project.description %></p>
 <p>Categories: <%= format_categories(@project) %></p>
+<%= image_tag(@project.image) %>
 
 <% if check_project(@project) %>
   <div class="controls">
