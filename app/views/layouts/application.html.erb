@@ -11,7 +11,6 @@
     <!-- Static pages -->
     <%= link_to "HOME", root_path %><br>
     <!-- User signup -->
-    <%= link_to "All users", users_path %> |
     <% if @current_user %>
       <%= link_to "View account", user_path(@current_user)  %><br>
     <% else %>

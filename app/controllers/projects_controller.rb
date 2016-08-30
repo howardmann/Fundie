@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
 
   private
     def project_params
-      params.require(:project).permit(:name, :description, :target_amount, {category_ids: []})
+      params.require(:project).permit(:name, :description, :target_amount, :deadline,  {category_ids: []})
     end
 
     def require_login

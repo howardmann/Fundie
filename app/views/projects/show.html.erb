@@ -9,6 +9,8 @@
 <p>Name: <%= @project.name %></p>
 <p>Creator: <%= @project.user.name %></p>
 <p>Target amount: <%= number_to_currency(@project.target_amount) %></p>
+<p>Deadline: <%= @project.deadline.strftime("%a %d %b, %Y") %></p>
+<p>Time remaining: <%= format_deadline(@project) %></p>
 <p>Description: <%= @project.description %></p>
 <p>Categories: <%= format_categories(@project) %></p>
 
@@ -36,10 +38,11 @@
   </ul>
 <% end %>
 
-
 <% unless check_project(@project) %>
   <% if check_pledge(@project) %>
     <%= link_to "You have pledged to this Project", pledge_path(@current_user.pledges.find_by(:project_id => @project.id)) %>
+  <% elsif @project.expired? %>
+    <%= format_project_expired(@project) %>
   <% elsif @project.pledges? %>
     <%= link_to "Back this project", new_project_pledge_path(@project) %>
   <% else %>

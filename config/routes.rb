@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   get '/projects/find_pledge' => 'projects#z_find_pledge', as: 'custom_find_pledge'
 
   resources :users
+
   resources :projects do
     resources :pledges, only: [:new, :create]
   end
+
   resources :pledges, only: [:index, :show, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

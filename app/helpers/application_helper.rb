@@ -7,8 +7,8 @@ module ApplicationHelper
     current_user? && @current_user.projects.include?(project)
   end
 
-  def check_pledge(pledge)
-    current_user? && @current_user.pledges.include?(pledge)
+  def check_pledge(project)
+    current_user? && @current_user.pledges.pluck(:project_id).include?(project.id)
   end
 
   def format_backers(project)
@@ -43,6 +43,18 @@ module ApplicationHelper
 
   def format_categories(project)
     project.categories.pluck(:name).join(', ').titleize
+  end
+
+  def format_deadline(project)
+    if project.deadline > Time.now
+      "#{time_ago_in_words(project.deadline).capitalize} to go"
+    else
+      "#{time_ago_in_words(project.deadline).capitalize} past deadline"
+    end
+  end
+
+  def format_project_expired(project)
+    "#{project.name} expired #{time_ago_in_words(project.deadline)}, no more pledges"
   end
 
 end

@@ -1,5 +1,6 @@
 class PledgesController < ApplicationController
   before_action :require_login, :only => [:new, :edit]
+  before_action :require_current_project, :only => [:new, :edit] 
 
   def index
     @pledges = Pledge.all
@@ -59,6 +60,14 @@ class PledgesController < ApplicationController
         session[:intended_url] = request.url
         flash[:error] = "You must be logged in to access this page"
         redirect_to login_path
+      end
+    end
+
+    def require_current_project
+      @project = Project.find(params[:project_id])
+      if @project.deadline < Time.now
+        flash[:error] = "Project expired no more pledging"
+        redirect_to project_path(@project)
       end
     end
 

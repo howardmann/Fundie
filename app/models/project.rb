@@ -47,4 +47,8 @@ class Project < ActiveRecord::Base
     pledge_sum - self.target_amount
   end
 
+  def expired?
+    self.deadline < Time.now
+  end
+
 end

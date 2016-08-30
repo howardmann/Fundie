@@ -5,13 +5,18 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :target_amount %><br>
-    <%= f.number_field :target_amount %>
+    <%= f.label :target_amount, "Target amount (up to $10,000)" %><br>
+    <%= f.number_field :target_amount, max: 10000 %>
+  </p>
+  <p>
+    <%= f.label :deadline, "Deadline (up to 6 months)" %><br>
+    <%= f.date_field :deadline, min: Date.today, max: (Date.today + 6.months) %>
   </p>
   <p>
     <%= f.label :description %><br>
     <%= f.text_area :description, cols: 40, rows: 7 %>
   </p>
+  <p>Select categories (default other):</p>
   <p>
     <%= hidden_field_tag "project[category_ids][]", Category.find_by(:name => "other").id %>
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>

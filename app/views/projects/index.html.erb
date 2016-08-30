@@ -10,8 +10,15 @@
           <li><%= "#{format_percent(el)} funded of #{format_target(el)} goal" %></li>
           <li><%= "#{format_pledged(el)} pledged by #{format_backers(el)}" %></li>
           <li><%= "#{format_shortfall(el)}" %></li>
+          <li><%= format_deadline(el) %></li>
         <% else %>
-          <li><%= link_to "Be the first to back this project", project_path(el) %></li>
+          <li>
+            <% unless el.expired? %>
+              <%= link_to "Be the first to back this project", project_path(el) %>
+            <% else %>
+              <%= format_project_expired(el) %>
+            <% end %>
+          </li>
         <% end %>
       </ul><br>
     <% end %>
