@@ -14,7 +14,10 @@
   <% object.reverse_each do |project| %>
     <tr>
       <td><%= @count %></td>
-      <td><%= link_to project.name, project_path(project) %></td>
+      <td>
+        <%= link_to project.name, project_path(project) %><br>
+        <%= cl_image_tag(project.image, :width=>70, :height=>70, :crop => :thumb, :effect => :pixelate_faces ) %>
+      </td>
       <td><%= format_description(project) %></td>
       <td><%= format_pledged(project) %></td>
       <td><%= format_target(project) %></td>

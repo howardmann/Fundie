@@ -6,6 +6,7 @@
 
 <hr>
 <h3>Project details:</h3>
+<%= cl_image_tag(@project.image, :width => 200, :height => 200, :effect => "grayscale", :crop => :fill) %>
 <table>
   <tr>
     <td>Name:</td>
@@ -31,7 +32,7 @@
     <td>Categories:</td>
     <td>
       <% @project.categories.each do |el| %>
-        <%= link_to "#{el.name.titleize}", category_path(el) %> |
+        <%= link_to "#{el.name.titleize}", category_path(el) %><br>
       <% end %>
     </td>
   </tr>
@@ -44,7 +45,6 @@
     <td><%= format_updated(@project) %></td>
   </tr>
 </table>
-
 
 <% if check_project(@project) %>
   <div class="controls">
@@ -87,8 +87,12 @@
   <% elsif @project.expired? %>
     <%= format_project_expired(@project) %>
   <% elsif @project.pledges? %>
-    <%= link_to "Back this project", new_project_pledge_path(@project) %>
+    <button>
+      <%= link_to "Back this project", new_project_pledge_path(@project) %>
+    </button>
   <% else %>
-    <%= link_to "Be the first to back this project", new_project_pledge_path(@project) %>
+    <button>
+      <%= link_to "Be the first to back this project", new_project_pledge_path(@project) %>
+    </button>
   <% end %>
 <% end %>

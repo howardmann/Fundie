@@ -33,6 +33,7 @@ p1 = Project.create({
   :name => "CoffeeMe",
   :target_amount => 1000,
   :deadline => '01-09-2016',
+  :image => 'coffee_me_shfmzh',
   :description => "Coffee cups for babies."
 })
 howie.projects << p1
@@ -41,6 +42,7 @@ p2 = Project.create({
   :name => "Keyboard",
   :target_amount => 5000,
   :deadline => '03-10-2016',
+  :image => 'keyboard_g7posx',
   :description => "Electronic keyboard for animal sounds."
 })
 badger.projects << p2
@@ -49,6 +51,7 @@ p3 = Project.create({
   :name => "Speaker",
   :target_amount => 500,
   :deadline => '03-12-2016',
+  :image => 'speaker_haggkf',
   :description => "Motivational speaking stool."
 })
 wolf.projects << p3
@@ -57,6 +60,7 @@ p4 = Project.create({
   :name => "Chariot",
   :target_amount => 6000,
   :deadline => '03-01-2017',
+  :image => 'chariot_wki5uf',
   :description => "TV series where horses ride humans."
 })
 pete.projects << p4
@@ -65,6 +69,7 @@ p5 = Project.create({
   :name => "Fubar",
   :target_amount => 4000,
   :deadline => '07-06-2016',
+  :image => 'fubar_rjzk8g',
   :description => "Hair salon which does the exact opposite of what you ask for."
 })
 howie.projects << p5
@@ -73,6 +78,7 @@ p6 = Project.create({
   :name => "Snaptop",
   :target_amount => 3000,
   :deadline => '03-07-2016',
+  :image => 'snaptop_x1seov',
   :description => "Laptop which snaps shut randomly five times a day."
 })
 badger.projects << p6
@@ -81,6 +87,7 @@ p7 = Project.create({
   :name => "Burger",
   :target_amount => 4000,
   :deadline => '03-10-2016',
+  :image => 'burger_txr4pj',
   :description => "I am hungry please fund my burger supply for a year."
 })
 badger.projects << p7
@@ -89,6 +96,7 @@ p8 = Project.create({
   :name => "Meth Lab",
   :target_amount => 10000,
   :deadline => '03-12-2016',
+  :image => 'meth_lab_eea6vy',
   :description => "Please support me in my future career. Early backers will receive a 10% discount on the best Ice in town."
 })
 badger.projects << p8
@@ -97,6 +105,7 @@ p9 = Project.create({
   :name => "Mandarin Peeler",
   :target_amount => 5000,
   :deadline => '03-01-2017',
+  :image => 'mandarin_peeler_gdftdb',
   :description => "Are you sick and tired of having to manually peel mandarins. With Mandarin Peeler, you can mail us your mandarins and we will ship them back peeled and tasty with a 7 day shipping guarantee."
 })
 pete.projects << p9
@@ -105,6 +114,7 @@ p10 = Project.create({
   :name => "Moustache Moistener",
   :target_amount => 7000,
   :deadline => '01-09-2016',
+  :image => 'moustache_moistener_hqouqc',
   :description => "For the man who suffers from dry moustache syndrome."
 })
 wolf.projects << p10

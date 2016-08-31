@@ -55,4 +55,7 @@ module ProjectsHelper
     truncate(project.description, length: 70, separator: ' ')
   end
 
+  def format_image_tag(project)
+    cl_image_tag(project.image, :width => 150, :height => 200, :crop => :fit)
+  end
 end

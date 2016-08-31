@@ -1,26 +1,32 @@
-<%= form_for(@project) do |f| %>
-  <%= render "shared/errors", object: @project %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :target_amount, "Target amount (up to $10,000)" %><br>
-    <%= f.number_field :target_amount, max: 10000 %>
-  </p>
-  <p>
-    <%= f.label :deadline, "Deadline (up to 6 months)" %><br>
-    <%= f.date_field :deadline, min: Date.today, max: (Date.today + 6.months) %>
-  </p>
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description, cols: 40, rows: 7 %>
-  </p>
-  <p>Select categories:</p>
-  <p>
-    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<%= form_for(@project, :html => {:multipart => true}) do |f| %>
+  <fieldset>
+    <%= render "shared/errors", object: @project %>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :target_amount, "Target amount (up to $10,000)" %><br>
+      <%= f.number_field :target_amount, max: 10000 %>
+    </p>
+    <p>
+      <%= f.label :deadline, "Deadline (up to 6 months)" %><br>
+      <%= f.date_field :deadline, min: Date.today, max: (Date.today + 6.months) %>
+    </p>
+    <p>
+      <%= f.label :description %><br>
+      <%= f.text_area :description, cols: 40, rows: 7 %>
+    </p>
+    <p>
+      <%= f.label "Project image upload" %><br>
+      <%= f.cl_image_upload :image %>
+    </p>
+    <p>Select categories:</p>
+    <p>
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  </fieldset>
 <% end %>
