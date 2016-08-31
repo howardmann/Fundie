@@ -2,52 +2,119 @@
 
 <!-- User -->
 <hr>
-<h3>User details:</h3>
-<ul>
-  <li>Name: <%= @user.name %></li>
-  <li>Email: <%= @user.email %></li>
-  <li>Member since: <%=" #{time_ago_in_words(@user.created_at)} ago" %></li>
-</ul>
-
-<% if own_user? %>
-  <div class="controls">
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
-  </div>
-<% end %>
+<h3><%= @user.name.titleize %> account summary:</h3>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>Member since:</td>
+    <td><%= time_ago_in_words(@user.created_at) %> ago</td>
+  </tr>
+  <tr>
+    <td>All projects:</td>
+    <td><%= @user.projects.count %></td>
+  </tr>
+  <tr>
+    <td>All project goal:</td>
+    <td><%= number_to_currency(@user.projects.sum(:target_amount), precision: 0) %></td>
+  </tr>
+  <tr>
+    <td>All project pledges:</td>
+    <td><%= number_to_currency(@user.projects_pledges_sum, precision: 0) %></td>
+  </tr>
+  <% if own_user? %>
+  <tr>
+    <td>Controls:</td>
+    <td>
+      <%= link_to 'Edit', edit_user_path(@user) %> |
+      <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+    </td>
+  </tr>
+  <% end %>
+</table>
 <hr>
 <!-- User Project -->
-<h3>Project details:</h3>
-
-<% @user.projects.each do |el| %>
-  <ul>
-    <li>Name: <%= link_to el.name, project_path(@user.projects.find(el)) %></li>
-    <li>Created: <%= "#{time_ago_in_words(el.created_at)} ago" %></li>
-    <li>Target: <%= format_target(el) %></li>
-    <li>Pledged: <%= format_pledged(el) %></li>
-    <li>Shortfall: <%= format_shortfall(el) %></li>
-
-    <% if own_user? %>
-      <div class="controls">
-        <%= link_to 'Edit', edit_project_path(el) %> |
-        <%= link_to 'Delete', project_path(el), method: :delete, data: {confirm: "Are you sure?"} %>
-      </div>
+<h3><%= @user.name.titleize %> project summary:</h3>
+<% if @user.projects.length > 0 %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Target</th>
+      <th>Pledged</th>
+      <th>Status</th>
+      <th>Deadline</th>
+      <th>Backers</th>
+      <th>Categories</th>
+      <% if own_user? %>
+        <th>Controls</th>
+      <% end %>
+    </tr>
+    <% @user.projects.order('target_amount desc').each do |el| %>
+      <tr>
+        <td><%= link_to el.name, project_path(el) %></td>
+        <td><%= format_description(el) %></td>
+        <td><%= format_target(el) %></td>
+        <td><%= format_pledged(el) %></td>
+        <td><%= format_goal(el) %></td>
+        <td><%= format_deadline(el) %></td>
+        <td><%= format_backers(el) %></td>
+        <td>
+          <% el.categories.each do |el| %>
+            <%= link_to "#{el.name.titleize}", category_path(el) %><br>
+          <% end %>
+        </td>
+        <% if own_user? %>
+          <td>
+            <%= link_to 'Edit', edit_project_path(el) %><br>
+            <%= link_to 'Delete', project_path(el), method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
-
-  </ul>
-
+  </table>
 <% end %>
 
 <%= link_to "New Project", new_project_path %><br>
 
 <hr>
 <!-- User Pledges -->
-<h3>Pledge details:</h3>
+<h3><%= @user.name.titleize %> pledge summary:</h3>
 
-<% @user.pledges.each do |el| %>
-  <ul>
-    <li><%= link_to "#{number_to_currency(el.amount)} to #{el.project.user.name} for #{el.project.name}", pledge_path(el) %></li>
-  </ul>
+<% if @user.pledges.length > 0 %>
+<table>
+  <tr>
+    <th>Backed</th>
+    <th>Your pledge</th>
+    <th>Project description</th>
+    <th>Your comment</th>
+    <th>Author</th>
+    <% if own_user? %>
+      <th>Controls</th>
+    <% end %>
+  </tr>
+  <% @user.pledges.order('amount desc').each do |el| %>
+    <tr>
+      <td><%= link_to el.project.name, project_path(el.project) %></td>
+      <td><%= format_pledged(el.project) %></td>
+      <td><%= format_description(el.project) %></td>
+      <td>"<%= el.comment %>"</td>
+      <td><%= link_to el.project.user.name, user_path(el.project.user) %></td>
+      <% if own_user? %>
+        <td>
+          <%= link_to 'Edit', edit_pledge_path(el) %>
+          <%= link_to 'Delete', pledge_path(el), method: :delete, data: {confirm: 'Are you sure?'} %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
 <% end %>
 
 <%= link_to "Back a new project", custom_find_pledge_path %>

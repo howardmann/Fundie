@@ -18,7 +18,6 @@ class Project < ActiveRecord::Base
   validates :target_amount, numericality: {greater_than: 0, less_than_or_equal_to: 10000}
   validates :deadline, presence: true
 
-
   # Associations
   belongs_to :user
   has_many :pledges

@@ -5,13 +5,15 @@
     <th>Category</th>
     <th>Live</th>
     <th>Funded</th>
+    <th>Expired</th>
     <th>Staff Pick</th>
   </tr>
   <% @categories.each do |el| %>
     <tr>
-      <td><%= link_to el.name, category_path(el) %></td>
+      <td><%= link_to "#{el.name.titleize}", category_path(el) %></td>
       <td><%= el.live_projects.count %></td>
       <td><%= el.funded_projects.count %></td>
+      <td><%= el.expired_projects.count %></td>
       <td>
         <% if el.live_projects.present? %>
           <%= link_to el.live_projects.sample.name, project_path(el.live_projects.sample) %>
@@ -21,5 +23,8 @@
       </td>
     </tr>
   <% end %>
-
 </table>
+
+<button>
+  <%= link_to "All projects", projects_path %>
+</button>

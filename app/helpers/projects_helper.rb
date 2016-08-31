@@ -52,7 +52,7 @@ module ProjectsHelper
   end
 
   def format_description(project)
-    truncate(project.description, length: 50, separator: ' ')
+    truncate(project.description, length: 70, separator: ' ')
   end
 
 end

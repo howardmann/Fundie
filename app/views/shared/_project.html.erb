@@ -1,0 +1,43 @@
+<table class="projects">
+  <tr>
+    <th>Rank</th>
+    <th>Project</th>
+    <th>Description</th>
+    <th>Raised</th>
+    <th>Target ($)</th>
+    <th>Status</th>
+    <th>Creator</th>
+    <th>Category</th>
+    <th>Pledge</th>
+  <tr>
+  <% @count = 1 %>
+  <% object.reverse_each do |project| %>
+    <tr>
+      <td><%= @count %></td>
+      <td><%= link_to project.name, project_path(project) %></td>
+      <td><%= format_description(project) %></td>
+      <td><%= format_pledged(project) %></td>
+      <td><%= format_target(project) %></td>
+      <td>
+        <%= format_status(project) %><br>
+        <%= format_deadline(project) %>
+      </td>
+      <td><%= link_to project.user.name, user_path(project.user) %></td>
+      <td>
+        <% project.categories.each do |el| %>
+          <%= link_to "#{el.name.titleize}", category_path(el) %><br>
+        <% end %>
+      </td>
+      <td>
+        <% if project.expired? %>
+          Pledging ended
+        <% elsif project.pledges?  %>
+          <%= link_to 'Back this project', project_path(project) %>
+        <% else %>
+          <%= link_to 'Be the first backer', project_path(project) %>
+        <% end %>
+      </td>
+    </tr>
+    <% @count += 1 %>
+  <% end %>
+</table>

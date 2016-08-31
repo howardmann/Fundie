@@ -1,24 +1,24 @@
-<h1>All Pledges</h1>
-
-<h3>Pledges from other users:</h3>
-<ul>
-  <% @pledges.each do |el| %>
-    <% unless check_pledge(el.project) %>
-      <li><%= link_to "#{number_to_currency(el.amount)} from #{el.user.name} to #{el.project.name} by #{el.project.user.name}", project_path(el.project) %></li>
-    <% end %>
+<h1>Pledger leaderboard</h1>
+<p><em>Kickstarter users who have backed the greatest dollar amount of projects</em></p>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Pledged</th>
+    <th>Projects</th>
+    <th>User</th>
+    <th>Member since:</th>
+  </tr>
+  <% @count = 1 %>
+  <% @users.reverse_each do |el| %>
+    <tr>
+      <td><%= @count %></td>
+      <td><%= number_to_currency(el.pledges.sum(:amount), precision: 0) %></td>
+      <td><%= el.pledges.count %></td>
+      <td><%= link_to el.name, user_path(el) %></td>
+      <td><%= time_ago_in_words(el.created_at) %> ago</td>
+    </tr>
+    <% @count += 1 %>
   <% end %>
-</ul>
+</table>
 
-<% if @current_user %>
-  <h3>Your pledges:</h3>
-  <ul>
-    <% @pledges.each do |el| %>
-      <% if check_pledge(el.project) %>
-        <li><%= link_to "#{number_to_currency(el.amount)} from #{el.user.name} to #{el.project.name} by #{el.project.user.name}", project_path(el.project) %></li>
-      <% end %>
-    <% end %>
-  </ul>
-  <%= link_to "Back a new project", custom_find_pledge_path %>
-<% else %>
-  <%= link_to "Joint the fun and back a new project", custom_find_pledge_path %>
-<% end %>
+<button><%= link_to "Back a new project", custom_find_pledge_path %></button>

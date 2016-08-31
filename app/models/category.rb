@@ -19,9 +19,16 @@ class Category < ActiveRecord::Base
     end
   end
 
+  def expired_projects
+    projects.select do |el|
+      el.expired?
+    end
+  end
+
   def funded_projects
     projects.select do |el|
       el.shortfall? == false
     end
   end
+
 end

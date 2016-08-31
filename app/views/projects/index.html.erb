@@ -1,48 +1,15 @@
-<h1>All Projects</h1>
+<h1>Project leaderboard</h1>
 
-<h3>Kickstarter projects:</h3>
-<table class="projects">
-  <tr>
-    <th>Project</th>
-    <th>Description</th>
-    <th>Raised</th>
-    <th>Target ($)</th>
-    <th>Status</th>
-    <th>Creator</th>
-    <th>Category</th>
-    <th>Pledge</th>
-  <tr>
-  <% @projects.each do |project| %>
-    <tr>
-      <td><%= link_to project.name, project_path(project) %></td>
-      <td><%= format_description(project) %></td>
-      <td><%= format_pledged(project) %></td>
-      <td><%= format_target(project) %></td>
-      <td>
-        <%= format_status(project) %><br>
-        <%= format_deadline(project) %>
-      </td>
-      <td><%= link_to project.user.name, user_path(project.user) %></td>
-      <td>
-        <% project.categories.each do |el| %>
-          <%= link_to "#{el.name.titleize}", category_path(el) %><br>
-        <% end %>
-      </td>
-      <td>
-        <% if project.expired? %>
-          Pledging ended
-        <% elsif project.pledges?  %>
-          <%= link_to 'Back this project', project_path(project) %>
-        <% else %>
-          <%= link_to 'Be the first backer', project_path(project) %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<p><em>Kickstarter projects which have raised the greatest dollar amount of pledges</em></p>
+
+<%= render "shared/project", object: @projects %>
 
 <% if @current_user %>
-  <%= link_to "New project", new_project_path %>
+  <button>
+    <%= link_to "New project", new_project_path %>
+  </button>
 <% else %>
-  <%= link_to "Join the fun, start a new Project", new_project_path %>
+  <button>
+    <%= link_to "Join the fun, start a new Project", new_project_path %>
+  </button>
 <% end %>

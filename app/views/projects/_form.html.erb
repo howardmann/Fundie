@@ -18,7 +18,6 @@
   </p>
   <p>Select categories:</p>
   <p>
-    <%= hidden_field_tag "project[category_ids][]", Category.find_by(:name => "other").id %>
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </p>
   <p>

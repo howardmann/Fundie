@@ -1,9 +1,17 @@
 class PledgesController < ApplicationController
   before_action :require_login, :only => [:show, :new, :edit]
-  before_action :require_current_project, :only => [:new, :edit]
+  before_action :require_current_project, :only => [:new]
 
   def index
-    @pledges = Pledge.all.order('amount desc')
+    # @pledges = Pledge.all.order('amount desc')
+    # @users = User.includes(:projects).all.sort_by do |user|
+    #   if user.projects.any?
+    #     user.projects_pledges_sum
+    #   end
+    # end
+    @users = User.all.sort_by do |user|
+      user.pledges.sum(:amount)
+    end
   end
 
   def show
