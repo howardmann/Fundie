@@ -9,47 +9,46 @@
 </head>
 <body>
   <nav>
-    <!-- Main pages -->
-    <%= link_to "HOME", root_path %> |
-    <%= link_to "DISCOVER", categories_path %> |
-    <%= link_to "CREATE", new_project_path %><br>
-    <!-- Leaderboard -->
-    <%= link_to "Project leaderboard", projects_path %> |
-    <%= link_to "Pledger leaderboard", pledges_path %><br>
-    <!-- User signup -->
-    <% if @current_user %>
-      <%= link_to "View account", user_path(@current_user)  %> |
-    <% else %>
-      <%= link_to "New user", new_user_path %> |
-    <% end %>
-    <!-- User login -->
-    <% unless @current_user %>
-      <%= link_to "Login", login_path %><br>
-    <% else %>
-      <%= link_to "Logout", logout_path, method: :delete %><br>
-    <% end %>
+    <div class="nav-wrapper purple darken-4">
+      <a href="/" class="brand-logo center hide-on-med-and-down">Kickstarter</a>
+
+      <ul id="nav-mobile" class="left">
+        <li><%= link_to "Projects", projects_path %></li>
+        <li><%= link_to "Pledges", pledges_path %></li>
+      </ul>
+
+      <ul id="nav-mobile" class="right">
+        <% if @current_user %>
+          <li><%= link_to "View account", user_path(@current_user) %></li>
+          <li><%= link_to "Logout", logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "New user", new_user_path %></li>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Session id -->
-  <% if @current_user %>
-    <p><em>@current_user: <%= @current_user.name %></em></p>
-  <% else %>
-    <p><em>Login above</em></p>
-  <% end %>
+  <div class="container">
 
-  <!-- FLASH MESSAGE -->
-  <% if flash[:success] %>
-    <p style = "color: green"><%= flash[:success] %></p>
-  <% end %>
-  <% if flash[:error] %>
-    <p style = "color: red"><%= flash[:error] %></p>
-  <% end %>
+    <!-- APP SUMMARY -->
+    <div class="card-panel teal lighten-2">
+    Live feed: <%= format_app_summary %>
+    </div>
 
-  <!-- APP SUMMARY -->
-  <p>Live feed: <%= format_app_summary %></p>
+    <!-- Session id -->
+    <p class="right-align"><em><%= format_session_user %></em></p>
+
+    <!-- FLASH MESSAGE -->
+    <% if flash[:success] %>
+      <p><%= flash[:success] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p><%= flash[:error] %></p>
+    <% end %>
 
 
-  <%= yield %>
-
+    <%= yield %>
+  </div>
 </body>
 </html>

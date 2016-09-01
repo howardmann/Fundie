@@ -1,14 +1,18 @@
-<h1>Kickstarter Homepage</h1>
-<h2>Our mission is to help bring creative projects to life.</h2>
-<p>Kickstarter helps artists, musicians, filmmakers, designers, and other creators find the resources and support they need to make their ideas a reality. To date, tens of thousands of creative projects — big and small — have come to life with the support of the Kickstarter community.</p>
+<div class="row">
+  <div class="col s12 center">
+  <h1>Let's Get Started</h1>
+  </div>
+</div>
 
-<h2>Our community</h2>
-<p>Kickstarter is an enormous global community built around creativity and creative projects. Over 10 million people, from every continent on earth, have backed a Kickstarter project.</p>
+<blockquote>
+Kickstarter helps artists, musicians, filmmakers, designers, and other creators find the resources and support they need to make their ideas a reality. To date, tens of thousands of creative projects — big and small — have come to life with the support of the Kickstarter community.
+</blockquote>
 
-<p>Some of those projects come from influential artists like De La Soul or Marina Abramović. Most come from amazing creative people you probably haven’t heard of — from Grandma Pearl to indie filmmakers to the band down the street.</p>
-
-<p>Every artist, filmmaker, designer, developer, and creator on Kickstarter has complete creative control over their work — and the opportunity to share it with a vibrant community of backers.</p>
-
-<h2>Let's Get Started</h2>
-<button class="discover"><%= link_to "Discover", categories_path %></button>
-<button class="create"><%= link_to "Create", new_project_path %></button>
+<div class="row">
+  <div class="col s6 center">
+    <%= link_to "Discover", categories_path, :class => 'btn purple' %>
+  </div>
+  <div class="col s6 center">
+    <%= link_to "Create", new_project_path, :class => 'btn green' %>
+  </div>
+</div>

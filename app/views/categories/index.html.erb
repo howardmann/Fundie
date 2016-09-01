@@ -1,6 +1,9 @@
 <h1>Project Categories</h1>
 
-<table class="categories">
+<%= link_to "All projects", projects_path, :class => "btn" %>
+
+<table class="striped">
+  <thead>
   <tr>
     <th>Category</th>
     <th>Live</th>
@@ -8,6 +11,7 @@
     <th>Expired</th>
     <th>Staff Pick</th>
   </tr>
+  </thead>
   <% @categories.each do |el| %>
     <tr>
       <td><%= link_to "#{el.name.titleize}", category_path(el) %></td>
@@ -24,7 +28,3 @@
     </tr>
   <% end %>
 </table>
-
-<button>
-  <%= link_to "All projects", projects_path %>
-</button>

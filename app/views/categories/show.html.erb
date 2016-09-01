@@ -2,14 +2,10 @@
 
 <% if @category.projects.count > 0 %>
 
+  <%= link_to "Add a new #{@category.name} project", new_project_path, :class => 'btn' %>
+
   <%= render "shared/project", object: @category.projects %>
 
-  <button>
-    <%= link_to "Add a new #{@category.name} project", new_project_path %>
-  </button>
-
 <% else %>
-  <button>
-    <%= link_to "Be the first to add a new #{@category.name} project", new_project_path %>
-  </button>
+  <%= link_to "Be the first to add a new #{@category.name} project", new_project_path, :class => 'btn' %>
 <% end %>

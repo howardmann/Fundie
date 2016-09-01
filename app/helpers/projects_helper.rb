@@ -52,7 +52,7 @@ module ProjectsHelper
   end
 
   def format_description(project)
-    truncate(project.description, length: 70, separator: ' ')
+    truncate(project.description, length: 45, separator: ' ')
   end
 
   def format_image_tag(project)

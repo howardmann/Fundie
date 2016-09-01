@@ -1,15 +1,8 @@
 <h1>Project leaderboard</h1>
-
-<p><em>Kickstarter projects which have raised the greatest dollar amount of pledges</em></p>
-
-<%= render "shared/project", object: @projects %>
-
 <% if @current_user %>
-  <button>
-    <%= link_to "New project", new_project_path %>
-  </button>
+  <%= link_to "New project", new_project_path, :class => "btn" %>
 <% else %>
-  <button>
-    <%= link_to "Join the fun, start a new Project", new_project_path %>
-  </button>
+  <%= link_to "Join the fun, start a new Project", new_project_path, :class => "btn" %>
 <% end %>
+<hr>
+<%= render "shared/project", object: @projects %>

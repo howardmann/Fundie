@@ -1,15 +1,15 @@
-<table class="projects">
-  <tr>
-    <th>Rank</th>
-    <th>Project</th>
-    <th>Description</th>
-    <th>Raised</th>
-    <th>Target ($)</th>
-    <th>Status</th>
-    <th>Creator</th>
-    <th>Category</th>
-    <th>Pledge</th>
-  <tr>
+<table class="striped">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Project</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Creator</th>
+      <th>Category</th>
+      <th>Pledge</th>
+    <tr>
+  </thead>
   <% @count = 1 %>
   <% object.reverse_each do |project| %>
     <tr>
@@ -19,8 +19,6 @@
         <%= cl_image_tag(project.image, :width=>70, :height=>70, :crop => :thumb, :effect => :pixelate_faces ) %>
       </td>
       <td><%= format_description(project) %></td>
-      <td><%= format_pledged(project) %></td>
-      <td><%= format_target(project) %></td>
       <td>
         <%= format_status(project) %><br>
         <%= format_deadline(project) %>
@@ -28,7 +26,7 @@
       <td><%= link_to project.user.name, user_path(project.user) %></td>
       <td>
         <% project.categories.each do |el| %>
-          <%= link_to "#{el.name.titleize}", category_path(el) %><br>
+          <%= link_to "#{el.name.titleize}", category_path(el) %>
         <% end %>
       </td>
       <td>

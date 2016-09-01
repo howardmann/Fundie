@@ -20,7 +20,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-
     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new project.
     # HM!! Remember that we have to reference :file in the params as the cl form_for helper renders in html name="file" so we are pulling the file from params[:file] and then storying the Cloudinary url equivalent in the image tag
     req = Cloudinary::Uploader.upload(params[:file])
@@ -29,7 +28,7 @@ class ProjectsController < ApplicationController
     @project.image = req["public_id"]
     if @project.save
       flash[:success] = "New project created"
-      redirect_to user_path(@current_user)
+      redirect_to project_path(@project)
     else
       render :new
     end

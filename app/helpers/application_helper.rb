@@ -25,4 +25,5 @@ module ApplicationHelper
     "Kickstarter has raised over #{pledge_total} for over #{projects} and counting"
   end
 
+
 end

@@ -26,7 +26,7 @@
       <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
     </p>
     <p>
-      <%= f.submit %>
+      <%= f.submit :class => 'btn'%>
     </p>
   </fieldset>
 <% end %>

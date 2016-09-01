@@ -33,8 +33,12 @@ class User < ActiveRecord::Base
         sum + pledge.amount
       end
     else
-      "0"
+      0
     end
+  end
+
+  def bank_left
+    self.bank - self.pledges.sum(:amount) + self.projects_pledges_sum
   end
 
 end

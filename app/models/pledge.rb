@@ -12,9 +12,14 @@
 #
 
 class Pledge < ActiveRecord::Base
+  # Validations
+  validates :amount, numericality: {greater_than: 0}
+
+  # Associations
   belongs_to :user
   belongs_to :project
 
+  # Logic
   def sum_total
     Pledge.all.sum(:amount)
   end

@@ -7,7 +7,7 @@
 <hr>
 <h3>Project details:</h3>
 <%= cl_image_tag(@project.image, :width => 200, :height => 200, :effect => "grayscale", :crop => :fill) %>
-<table>
+<table class="striped">
   <tr>
     <td>Name:</td>
     <td><%= @project.name %></td>
@@ -44,14 +44,19 @@
     <td>Last updated:</td>
     <td><%= format_updated(@project) %></td>
   </tr>
+  <tr>
+    <td>Controls:</td>
+    <td>
+    <% if check_project(@project) %>
+      <div class="controls">
+        <%= link_to 'Edit', edit_project_path(@project) %> |
+        <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
+      </div>
+    <% end %>
+    </td>
+  </tr>
 </table>
 
-<% if check_project(@project) %>
-  <div class="controls">
-    <%= link_to 'Edit', edit_project_path(@project) %> |
-    <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
-  </div>
-<% end %>
 
 <hr>
 
@@ -59,7 +64,7 @@
 
 <% if check_project(@project) || @project.pledges? %>
 
-  <table>
+  <table class= "striped">
     <tr>
       <td>Status:</td>
       <td><%= format_shortfall(@project) %></td>
@@ -87,12 +92,8 @@
   <% elsif @project.expired? %>
     <%= format_project_expired(@project) %>
   <% elsif @project.pledges? %>
-    <button>
-      <%= link_to "Back this project", new_project_pledge_path(@project) %>
-    </button>
+    <%= link_to "Back this project", new_project_pledge_path(@project), :class => 'btn' %>
   <% else %>
-    <button>
-      <%= link_to "Be the first to back this project", new_project_pledge_path(@project) %>
-    </button>
+    <%= link_to "Be the first to back this project", new_project_pledge_path(@project), :class => 'btn' %>
   <% end %>
 <% end %>
