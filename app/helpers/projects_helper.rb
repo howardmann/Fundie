@@ -48,7 +48,7 @@ module ProjectsHelper
   end
 
   def format_project_expired(project)
-    "#{project.name} expired #{time_ago_in_words(project.deadline)}, no more pledges"
+    "#{project.name} expired #{time_ago_in_words(project.deadline)} ago, no more pledges"
   end
 
   def format_description(project)

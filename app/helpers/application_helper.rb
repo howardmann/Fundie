@@ -20,10 +20,8 @@ module ApplicationHelper
   end
 
   def format_app_summary
-    projects = pluralize(Project.all.count,'project')
-    pledge_total = number_to_currency(Pledge.all.sum(:amount), precision: 0)
-    "Kickstarter has raised over #{pledge_total} for over #{projects} and counting"
+    projects = pluralize(Project.live_projects.count,'live project')
+    pledge_total = number_to_currency(Pledge.sum_total, precision: 0)
+    "Running stats: #{projects}, #{pledge_total} pledged"
   end
-
-
 end

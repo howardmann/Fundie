@@ -25,9 +25,16 @@ class PledgesController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @pledge = @current_user.pledges.create(pledge_params)
-    if @pledge.save
+
+    if @current_user.can_pledge?(params[:pledge][:amount].to_i)
+      @pledge = @current_user.pledges.create(pledge_params)
       @project.pledges << @pledge
+    else
+      flash[:error] = "Error: Pledge amount cannot exceed your bank funds"
+      redirect_to new_project_pledge_path(@project) and return
+    end
+
+    if @pledge.save
       flash[:success] = "Succesfully pledged"
       redirect_to project_path(@project)
     else
@@ -41,10 +48,17 @@ class PledgesController < ApplicationController
 
   def update
     @pledge = Pledge.find(params[:id])
-    @pledge.update(pledge_params)
+
+    if @current_user.can_pledge?( params[:pledge][:amount].to_i )
+      @pledge.update(pledge_params)
+    else
+      flash[:error] = "Error: Pledge amount cannot exceed your bank funds"
+      render :edit and return
+    end
+
     if @pledge.save
       flash[:success] = "Pledge updated"
-      redirect_to user_path(@current_user)
+      redirect_to pledge_path(@pledge)
     else
       render :edit
     end

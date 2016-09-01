@@ -22,10 +22,16 @@ class ProjectsController < ApplicationController
   def create
     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new project.
     # HM!! Remember that we have to reference :file in the params as the cl form_for helper renders in html name="file" so we are pulling the file from params[:file] and then storying the Cloudinary url equivalent in the image tag
-    req = Cloudinary::Uploader.upload(params[:file])
+
     @project = @current_user.projects.create(project_params)
     # Note that Cloudinary assigns each image a unique public_id which we pass as the url to be modified and transformed with the Cloudinary app
-    @project.image = req["public_id"]
+    if params[:file]
+      req = Cloudinary::Uploader.upload(params[:file])
+      @project.image = req["public_id"]
+    else
+      @project.image = 'placeholder_y6he4n'
+    end
+
     if @project.save
       flash[:success] = "New project created"
       redirect_to project_path(@project)
@@ -39,11 +45,16 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    req = Cloudinary::Uploader.upload(params[:file])
     @project = @current_user.projects.find(params[:id])
-    @project.update(project_params)
 
-    @project.image = req["public_id"]
+    @project.update(project_params)
+    if params[:file]
+      req = Cloudinary::Uploader.upload(params[:file])
+      @project.image = req["public_id"]
+    else
+      @project.image = 'placeholder_y6he4n'
+    end
+
     if @project.save
       flash[:success] = "Project updated"
       redirect_to project_path(@project)
@@ -61,7 +72,7 @@ class ProjectsController < ApplicationController
 
   private
     def project_params
-      params.require(:project).permit(:name, :description, :target_amount, :deadline,  {category_ids: []})
+      params.require(:project).permit(:name, :description, :target_amount, :deadline, :bank,  {category_ids: []})
     end
 
     def require_login

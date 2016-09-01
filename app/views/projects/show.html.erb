@@ -4,9 +4,20 @@
   <h1>Your project: <%= @project.name %></h1>
 <% end %>
 
+<% unless check_project(@project) %>
+  <% if check_pledge(@project) %>
+    <%= link_to "You have pledged to this Project", pledge_path(@current_user.pledges.find_by(:project_id => @project.id)), :class => 'btn green' %>
+  <% elsif @project.expired? %>
+    <%= format_project_expired(@project) %>
+  <% elsif @project.pledges? %>
+    <%= link_to "Back this project", new_project_pledge_path(@project), :class => 'btn' %>
+  <% else %>
+    <%= link_to "Be the first to back this project", new_project_pledge_path(@project), :class => 'btn' %>
+  <% end %>
+<% end %>
 <hr>
-<h3>Project details:</h3>
 <%= cl_image_tag(@project.image, :width => 200, :height => 200, :effect => "grayscale", :crop => :fill) %>
+
 <table class="striped">
   <tr>
     <td>Name:</td>
@@ -32,7 +43,7 @@
     <td>Categories:</td>
     <td>
       <% @project.categories.each do |el| %>
-        <%= link_to "#{el.name.titleize}", category_path(el) %><br>
+        <%= link_to "#{el.name.titleize}", category_path(el) %> &nbsp;
       <% end %>
     </td>
   </tr>
@@ -44,19 +55,18 @@
     <td>Last updated:</td>
     <td><%= format_updated(@project) %></td>
   </tr>
-  <tr>
-    <td>Controls:</td>
-    <td>
-    <% if check_project(@project) %>
-      <div class="controls">
-        <%= link_to 'Edit', edit_project_path(@project) %> |
-        <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
-      </div>
-    <% end %>
-    </td>
-  </tr>
+  <% if check_project(@project) %>
+    <tr>
+      <td>Controls:</td>
+      <td>
+        <div class="controls">
+          <%= link_to 'Edit', edit_project_path(@project) %> |
+          <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
 </table>
-
 
 <hr>
 
@@ -84,16 +94,6 @@
     </td>
     </tr>
   </table>
-<% end %>
-
-<% unless check_project(@project) %>
-  <% if check_pledge(@project) %>
-    <%= link_to "You have pledged to this Project", pledge_path(@current_user.pledges.find_by(:project_id => @project.id)) %>
-  <% elsif @project.expired? %>
-    <%= format_project_expired(@project) %>
-  <% elsif @project.pledges? %>
-    <%= link_to "Back this project", new_project_pledge_path(@project), :class => 'btn' %>
-  <% else %>
-    <%= link_to "Be the first to back this project", new_project_pledge_path(@project), :class => 'btn' %>
-  <% end %>
+<% else %>
+  <p>Awaiting pledges</p>
 <% end %>

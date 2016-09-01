@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
 
   # Associations
   has_secure_password
-  has_many :projects
-  has_many :pledges
+  has_many :projects, dependent: :destroy
+  has_many :pledges, dependent: :destroy
   # has_many :assigned_pledges, :through => :projects, :table_name => "pledges"
 
   # Logic
@@ -40,5 +40,10 @@ class User < ActiveRecord::Base
   def bank_left
     self.bank - self.pledges.sum(:amount) + self.projects_pledges_sum
   end
+
+  def can_pledge?( amount )
+    self.bank_left >= amount.to_i
+  end
+
 
 end

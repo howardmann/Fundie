@@ -30,12 +30,16 @@
         <% end %>
       </td>
       <td>
-        <% if project.expired? %>
+        <% if check_project(project)%>
+          Your project
+        <% elsif check_pledge(project) %>
+          Already backed
+        <% elsif project.expired? %>
           Pledging ended
         <% elsif project.pledges?  %>
-          <%= link_to 'Back this project', project_path(project) %>
+          <%= link_to 'Back this', project_path(project)%>
         <% else %>
-          <%= link_to 'Be the first backer', project_path(project) %>
+          <%= link_to 'Be the first', project_path(project) %>
         <% end %>
       </td>
     </tr>

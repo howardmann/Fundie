@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
 
   # Associations
   belongs_to :user
-  has_many :pledges
+  has_many :pledges, dependent: :destroy
   has_and_belongs_to_many :categories
 
   # Logic
@@ -54,6 +54,12 @@ class Project < ActiveRecord::Base
 
   def expired?
     self.deadline < Time.now
+  end
+
+  def self.live_projects
+    self.select do |el|
+      el.expired? == false
+    end
   end
 
   def order_pledges

@@ -2,15 +2,15 @@
   <fieldset>
     <%= render "shared/errors", object: @pledge %>
     <p>
-      <%= f.label :amount %><br>
+      <%= f.label :amount, "Pledge an amount ($)" %><br>
       <%= f.number_field :amount %>
     </p>
     <p>
-      <%= f.label :comment %><br>
+      <%= f.label :comment, "Leave a comment" %><br>
       <%= f.text_area :comment, cols: 40, rows: 7 %>
     </p>
     <p>
-      <%= f.submit %>
+      <%= f.submit :class => 'btn'%>
     </p>
   </fieldset>
 <% end %>

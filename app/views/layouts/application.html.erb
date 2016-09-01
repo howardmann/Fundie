@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Kickstarter</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>Fundie</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= cloudinary_js_config %>
 </head>
 <body>
+  <header>
   <nav>
-    <div class="nav-wrapper purple darken-4">
-      <a href="/" class="brand-logo center hide-on-med-and-down">Kickstarter</a>
+    <div class="nav-wrapper">
+      <div class="container">
+      <a href="/" class="brand-logo center hide-on-small-only">Fundie</a>
 
       <ul id="nav-mobile" class="left">
         <li><%= link_to "Projects", projects_path %></li>
@@ -26,14 +28,18 @@
           <li><%= link_to "Login", login_path %></li>
         <% end %>
       </ul>
+      </div>
     </div>
   </nav>
+  </header>
+
+  <main>
 
   <div class="container">
 
     <!-- APP SUMMARY -->
     <div class="card-panel teal lighten-2">
-    Live feed: <%= format_app_summary %>
+      <%= format_app_summary %>
     </div>
 
     <!-- Session id -->
@@ -47,8 +53,35 @@
       <p><%= flash[:error] %></p>
     <% end %>
 
-
     <%= yield %>
   </div>
+
+  </main>
+
+  <footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Acknowledgements</h5>
+        <p class="grey-text text-lighten-4">Ruby on Rails project by Howie Mann as part of GA WDi16 Project One. Project inspiration from Kickstarter.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Discover</h5>
+        <ul>
+          <li><%= link_to "All categories", categories_path, :class => "grey-text text-lighten-3" %></li>
+          <li><%= link_to "All projects", projects_path, :class => "grey-text text-lighten-3" %></li>
+          <li><%= link_to "Pledge rank", pledges_path, :class => "grey-text text-lighten-3" %></li>
+          <li><%= link_to "New project", new_project_path, :class => "grey-text text-lighten-3" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2016 Howie_Burger. Find me on <a href="http://www.github.com/howardmann" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

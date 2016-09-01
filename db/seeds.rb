@@ -32,7 +32,7 @@ Project.destroy_all
 p1 = Project.create({
   :name => "CoffeeMe",
   :target_amount => 1000,
-  :deadline => '01-09-2016',
+  :deadline => '01-11-2016',
   :image => 'coffee_me_shfmzh',
   :description => "Coffee cups for babies."
 })
@@ -77,7 +77,7 @@ howie.projects << p5
 p6 = Project.create({
   :name => "Snaptop",
   :target_amount => 3000,
-  :deadline => '03-07-2016',
+  :deadline => '03-07-2017',
   :image => 'snaptop_x1seov',
   :description => "Laptop which snaps shut randomly five times a day."
 })
@@ -113,7 +113,7 @@ pete.projects << p9
 p10 = Project.create({
   :name => "Moustache Moistener",
   :target_amount => 7000,
-  :deadline => '01-09-2016',
+  :deadline => '01-12-2016',
   :image => 'moustache_moistener_hqouqc',
   :description => "For the man who suffers from dry moustache syndrome."
 })
@@ -148,63 +148,63 @@ p "p7 deadline is #{p7.deadline.strftime("%a %d, %Y")}"
 
 ##### PLEDGE
 Pledge.destroy_all
-pledge1 = howie.pledges.create({
-  :amount => 100,
-  :project_id => p2.id,
-  :comment => "Go Keyboard badger"
-})
-pledge2 = howie.pledges.create({
-  :amount => 200,
-  :project_id => p3.id,
-  :comment => "I love speakers wolf"
-})
-pledge3 = wolf.pledges.create({
-  :amount => 500,
-  :project_id => p2.id,
-  :comment => "I love keyboards too"
-})
-pledge4 = badger.pledges.create({
-  :amount => 400,
-  :project_id => p3.id,
-  :comment => "I love speaker stools"
-})
-pledge5 = wolf.pledges.create({
-  :amount => 500,
-  :project_id => p7.id,
-  :comment => "I support your burger dream"
-})
-pledge6 = andrew.pledges.create({
-  :amount => 1000,
-  :project_id => p8.id,
-  :comment => "Go Heisenberg!"
-})
-pledge7 = priyanka.pledges.create({
-  :amount => 3000,
-  :project_id => p8.id,
-  :comment => "Good for you"
-})
-pledge8 = yangmei.pledges.create({
-  :amount => 4000,
-  :project_id => p8.id,
-  :comment => "So proud of you badger"
-})
+# pledge1 = howie.pledges.create({
+#   :amount => 100,
+#   :project_id => p2.id,
+#   :comment => "Go Keyboard badger"
+# })
+# pledge2 = howie.pledges.create({
+#   :amount => 200,
+#   :project_id => p3.id,
+#   :comment => "I love speakers wolf"
+# })
+# pledge3 = wolf.pledges.create({
+#   :amount => 500,
+#   :project_id => p2.id,
+#   :comment => "I love keyboards too"
+# })
+# pledge4 = badger.pledges.create({
+#   :amount => 400,
+#   :project_id => p3.id,
+#   :comment => "I love speaker stools"
+# })
+# pledge5 = wolf.pledges.create({
+#   :amount => 500,
+#   :project_id => p7.id,
+#   :comment => "I support your burger dream"
+# })
+# pledge6 = andrew.pledges.create({
+#   :amount => 1000,
+#   :project_id => p8.id,
+#   :comment => "Go Heisenberg!"
+# })
+# pledge7 = priyanka.pledges.create({
+#   :amount => 3000,
+#   :project_id => p8.id,
+#   :comment => "Good for you"
+# })
+# pledge8 = yangmei.pledges.create({
+#   :amount => 4000,
+#   :project_id => p8.id,
+#   :comment => "So proud of you badger"
+# })
 
-puts "\nCreate Pledges test"
-p "Pledge count: #{Pledge.all.count}"
-p "pledge1: #{pledge1.user.name} pledges $#{pledge1.amount.round} for project #{pledge1.project.name} by #{pledge1.project.user.name}"
-p "pledge2: #{pledge2.user.name} pledges $#{pledge2.amount.round} for project #{pledge2.project.name} by #{pledge2.project.user.name}"
-p "pledge3: #{pledge3.user.name} pledges $#{pledge3.amount.round} for project #{pledge3.project.name} by #{pledge3.project.user.name}"
-p "pledge4: #{pledge4.user.name} pledges $#{pledge4.amount.round} for project #{pledge4.project.name} by #{pledge4.project.user.name}"
-p "pledge5: #{pledge5.user.name} pledges $#{pledge5.amount.round} for project #{pledge5.project.name} by #{pledge5.project.user.name}"
-p "pledge6: #{pledge6.user.name} pledges $#{pledge6.amount.round} for project #{pledge6.project.name} by #{pledge6.project.user.name}"
-p "pledge7: #{pledge7.user.name} pledges $#{pledge7.amount.round} for project #{pledge7.project.name} by #{pledge7.project.user.name}"
-p "pledge8: #{pledge8.user.name} pledges $#{pledge8.amount.round} for project #{pledge8.project.name} by #{pledge8.project.user.name}"
+# puts "\nCreate Pledges test"
+# p "Pledge count: #{Pledge.all.count}"
+# p "pledge1: #{pledge1.user.name} pledges $#{pledge1.amount.round} for project #{pledge1.project.name} by #{pledge1.project.user.name}"
+# p "pledge2: #{pledge2.user.name} pledges $#{pledge2.amount.round} for project #{pledge2.project.name} by #{pledge2.project.user.name}"
+# p "pledge3: #{pledge3.user.name} pledges $#{pledge3.amount.round} for project #{pledge3.project.name} by #{pledge3.project.user.name}"
+# p "pledge4: #{pledge4.user.name} pledges $#{pledge4.amount.round} for project #{pledge4.project.name} by #{pledge4.project.user.name}"
+# p "pledge5: #{pledge5.user.name} pledges $#{pledge5.amount.round} for project #{pledge5.project.name} by #{pledge5.project.user.name}"
+# p "pledge6: #{pledge6.user.name} pledges $#{pledge6.amount.round} for project #{pledge6.project.name} by #{pledge6.project.user.name}"
+# p "pledge7: #{pledge7.user.name} pledges $#{pledge7.amount.round} for project #{pledge7.project.name} by #{pledge7.project.user.name}"
+# p "pledge8: #{pledge8.user.name} pledges $#{pledge8.amount.round} for project #{pledge8.project.name} by #{pledge8.project.user.name}"
 
-##### PROJECT PLEDGE TEST
-puts "\nProject pledge vs target amount test"
-p "Project 1: #{p2.name} total pledged: #{p1.pledges.sum(:amount)} vs. target of #{p1.target_amount}"
-p "Project 2: #{p2.name} total pledged: #{p2.pledges.sum(:amount)} vs. target of #{p2.target_amount}"
-p "Project 3: #{p3.name} total pledged: #{p3.pledges.sum(:amount)} vs. target of #{p3.target_amount}"
+# ##### PROJECT PLEDGE TEST
+# puts "\nProject pledge vs target amount test"
+# p "Project 1: #{p2.name} total pledged: #{p1.pledges.sum(:amount)} vs. target of #{p1.target_amount}"
+# p "Project 2: #{p2.name} total pledged: #{p2.pledges.sum(:amount)} vs. target of #{p2.target_amount}"
+# p "Project 3: #{p3.name} total pledged: #{p3.pledges.sum(:amount)} vs. target of #{p3.target_amount}"
 
 ##### CATEGORY CREATE TEST
 Category.destroy_all

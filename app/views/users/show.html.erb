@@ -53,6 +53,7 @@
 <hr>
 <!-- User Project -->
 <h3><%= @user.name.titleize %> project summary:</h3>
+<%= link_to "Start your new project", new_project_path, :class => 'btn' %><br>
 
 <% if @user.projects.length > 0 %>
   <table class="responsive-table striped">
@@ -96,13 +97,12 @@
   </table>
 <% end %>
 
-<%= link_to "New Project", new_project_path, :class => 'btn' %>
-
 <hr>
 <!-- User Pledges -->
 <h3><%= @user.name.titleize %> pledge summary:</h3>
-
+<%= link_to "Back a new project", custom_find_pledge_path, :class => 'btn' %><br>
 <% if @user.pledges.length > 0 %>
+
 <table class ="responsive-table striped">
   <thead>
     <tr>
@@ -117,8 +117,11 @@
     </tr>
   </thead>
   <% @user.pledges.order('amount desc').each do |el| %>
+    <% if el.project %>
     <tr>
-      <td><%= link_to el.project.name, project_path(el.project) %></td>
+      <td>
+        <%= link_to el.project.name, project_path(el.project) %>
+      </td>
       <td><%= format_pledged(el.project) %></td>
       <td><%= format_description(el.project) %></td>
       <td>"<%= el.comment %>"</td>
@@ -130,8 +133,7 @@
         </td>
       <% end %>
     </tr>
+    <% end %>
   <% end %>
 </table>
 <% end %>
-
-<%= link_to "Back a new project", custom_find_pledge_path, :class => 'btn' %>

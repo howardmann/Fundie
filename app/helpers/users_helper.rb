@@ -4,11 +4,7 @@ module UsersHelper
   end
 
   def format_bank(user)
-    if user.bank_left > 0
       number_to_currency(user.bank_left, precision: 0)
-    else
-      "Broke!"
-    end
   end
 
   def format_pledges_received(user)
