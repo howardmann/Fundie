@@ -3,53 +3,59 @@
 <!-- User -->
 <hr>
 <h3><%= @user.name.titleize %> account summary:</h3>
-<table class="striped">
-  <tr>
-    <td>Name:</td>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <td>Email:</td>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
-    <td>Member since:</td>
-    <td><%= time_ago_in_words(@user.created_at) %> ago</td>
-  </tr>
-  <tr>
-    <td>All projects:</td>
-    <td><%= @user.projects.count %></td>
-  </tr>
-  <tr>
-    <td>All project goal:</td>
-    <td><%= number_to_currency(@user.projects.sum(:target_amount), precision: 0) %></td>
-  </tr>
-  <tr>
-    <td>Bank opening:</td>
-    <td><%= number_to_currency(@user.bank, precision: 0) %></td>
-  </tr>
-  <tr>
-    <td>&nbsp; Pledges received:</td>
-    <td>+ <%= number_to_currency(@user.projects_pledges_sum, precision: 0) %></td>
-  </tr>
-  <tr>
-    <td>&nbsp; Pledges made:</td>
-    <td>- <%= format_pledges_received(@user) %></td>
-  </tr>
-  <tr>
-    <td>Bank closing:</td>
-    <td>= <%= format_bank(@user) %></td>
-  </tr>
-  <% if own_user? %>
-  <tr>
-    <td>Controls:</td>
-    <td>
-      <%= link_to 'Edit', edit_user_path(@user) %> |
-      <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+<div class="row">
+  <div class="col s12 m4 center-align">
+    <%= cl_image_tag(@user.image, :width => 200, :height => 200, :effect => "pixelate_faces:7", :crop => :fill) %>
+  </div>
+  <div class="col s12 m8">
+    <table class="striped">
+      <tr>
+        <td>Name:</td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Member since:</td>
+        <td><%= time_ago_in_words(@user.created_at) %> ago</td>
+      </tr>
+      <tr>
+        <td>All projects:</td>
+        <td><%= @user.projects.count %></td>
+      </tr>
+      <tr>
+        <td>All project goal:</td>
+        <td><%= number_to_currency(@user.projects.sum(:target_amount), precision: 0) %></td>
+      </tr>
+      <tr>
+        <td>Bank opening:</td>
+        <td><%= number_to_currency(@user.bank, precision: 0) %></td>
+      </tr>
+      <tr>
+        <td>&nbsp; Pledges received:</td>
+        <td>+ <%= number_to_currency(@user.projects_pledges_sum, precision: 0) %></td>
+      </tr>
+      <tr>
+        <td>&nbsp; Pledges made:</td>
+        <td>- <%= format_pledges_received(@user) %></td>
+      </tr>
+      <tr>
+        <td>Bank closing:</td>
+        <td>= <%= format_bank(@user) %></td>
+      </tr>
+      <% if own_user? %>
+      <tr>
+        <td>Controls:</td>
+        <td>
+          <%= link_to 'Edit', edit_user_path(@user) %> |
+          <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+</div>
 <hr>
 <!-- User Project -->
 <h3><%= @user.name.titleize %> project summary:</h3>

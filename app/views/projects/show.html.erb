@@ -16,57 +16,66 @@
   <% end %>
 <% end %>
 <hr>
-<%= cl_image_tag(@project.image, :width => 200, :height => 200, :effect => "grayscale", :crop => :fill) %>
 
-<table class="striped">
-  <tr>
-    <td>Name:</td>
-    <td><%= @project.name %></td>
-  </tr>
-  <tr>
-    <td>Creator:</td>
-    <td><%= link_to @project.user.name, user_path(@project.user) %></td>
-  </tr>
-  <tr>
-    <td>Target amount:</td>
-    <td><%= format_target(@project) %></td>
-  </tr>
-  <tr>
-    <td>Time remaining:</td>
-    <td><%= format_deadline(@project) %></td>
-  </tr>
-  <tr>
-    <td>Description:</td>
-    <td><%= @project.description %></td>
-  </tr>
-  <tr>
-    <td>Categories:</td>
-    <td>
-      <% @project.categories.each do |el| %>
-        <%= link_to "#{el.name.titleize}", category_path(el) %> &nbsp;
+<div class="row">
+
+  <div class="col s12 m4 center-align">
+    <div class="valign">
+    <%= cl_image_tag(@project.image, :width => 300, :height => 300, :crop => :fill)%>
+    </div>
+  </div>
+  <div class="col s12 m8">
+    <table class="striped">
+      <tr>
+        <td>Name:</td>
+        <td><%= @project.name %></td>
+      </tr>
+      <tr>
+        <td>Creator:</td>
+        <td><%= link_to @project.user.name, user_path(@project.user) %></td>
+      </tr>
+      <tr>
+        <td>Target amount:</td>
+        <td><%= format_target(@project) %></td>
+      </tr>
+      <tr>
+        <td>Time remaining:</td>
+        <td><%= format_deadline(@project) %></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><%= @project.description %></td>
+      </tr>
+      <tr>
+        <td>Categories:</td>
+        <td>
+          <% @project.categories.each do |el| %>
+            <%= link_to "#{el.name.titleize}", category_path(el) %> &nbsp;
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Created:</td>
+        <td><%= format_created(@project) %></td>
+      </tr>
+      <tr>
+        <td>Last updated:</td>
+        <td><%= format_updated(@project) %></td>
+      </tr>
+      <% if check_project(@project) %>
+        <tr>
+          <td>Controls:</td>
+          <td>
+            <div class="controls">
+              <%= link_to 'Edit', edit_project_path(@project) %> |
+              <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
+            </div>
+          </td>
+        </tr>
       <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>Created:</td>
-    <td><%= format_created(@project) %></td>
-  </tr>
-  <tr>
-    <td>Last updated:</td>
-    <td><%= format_updated(@project) %></td>
-  </tr>
-  <% if check_project(@project) %>
-    <tr>
-      <td>Controls:</td>
-      <td>
-        <div class="controls">
-          <%= link_to 'Edit', edit_project_path(@project) %> |
-          <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"} %>
-        </div>
-      </td>
-    </tr>
-  <% end %>
-</table>
+    </table>
+  </div>
+</div>
 
 <hr>
 

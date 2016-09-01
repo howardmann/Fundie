@@ -4,6 +4,8 @@
       <th>Rank</th>
       <th>Project</th>
       <th>Description</th>
+      <th>Target</th>
+      <th>Raised</th>
       <th>Status</th>
       <th>Creator</th>
       <th>Category</th>
@@ -16,9 +18,11 @@
       <td><%= @count %></td>
       <td>
         <%= link_to project.name, project_path(project) %><br>
-        <%= cl_image_tag(project.image, :width=>70, :height=>70, :crop => :thumb, :effect => :pixelate_faces ) %>
+        <%= link_to(cl_image_tag(project.image, :width=>70, :height=>70, :crop => :thumb, :effect => 'grayscale'), project_path(project)) %>
       </td>
       <td><%= format_description(project) %></td>
+      <td><%= format_target(project) %></td>
+      <td><%= format_pledged(project) %></td>
       <td>
         <%= format_status(project) %><br>
         <%= format_deadline(project) %>

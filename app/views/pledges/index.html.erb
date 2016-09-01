@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Rank</th>
+      <th>Profile</th>
       <th>Pledged</th>
       <th>Projects</th>
       <th>In bank</th>
@@ -17,6 +18,9 @@
   <% @users.reverse_each do |el| %>
     <tr>
       <td><%= @count %></td>
+      <td>
+        <%= link_to(cl_image_tag(el.image, :width=>70, :height=>70, :crop => :thumb ), user_path(el)) %>
+      </td>
       <td><%= number_to_currency(el.pledges.sum(:amount), precision: 0) %></td>
       <td><%= el.pledges.count %></td>
       <td><%= format_bank(el) %></td>

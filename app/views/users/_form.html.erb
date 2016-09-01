@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :html => {:multipart => true}) do |f| %>
   <fieldset>
     <%= render "shared/errors", object: @user %>
     <p>
@@ -16,6 +16,10 @@
     <p>
       <%= f.label :password_confirmation %><br>
       <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+      <%= f.label "Avatar image upload" %><br>
+      <%= f.cl_image_upload :image %>
     </p>
     <p>
       <%= f.submit :class => 'btn'%>

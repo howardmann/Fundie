@@ -1,18 +1,38 @@
-<div class="row">
-  <div class="col s12 center">
-  <h1>Let's Get Started</h1>
-  </div>
-</div>
-
-<blockquote>
+<!-- <blockquote>
 Fundie helps artists, creators and pioneers reach their funding goals and make their bold ideas come alive. Join our Fundie community today as a creator or supporter.
-</blockquote>
+</blockquote> -->
 
-<div class="row">
-  <div class="col s6 center">
-    <%= link_to "Support", categories_path, :class => 'btn-large' %>
+
+  <br><br>
+  <h1 class="header center teal-text text-lighten-2">
+    Let's Get Started
+  </h1>
+
+  <div class="row center">
+    <h5 class="header col s12 light">Fundie helps creators make their bold ideas become reality</h5>
   </div>
-  <div class="col s6 center">
-    <%= link_to "Create", new_project_path, :class => 'btn-large teal lighten-3' %>
+
+  <div class="row center">
+    <div class="col s4 offset-s2">
+      <div class="icon-block">
+        <p><i class="medium material-icons teal-text">navigation</i></p>
+        <%= link_to "discover", categories_path, :class => 'btn-large' %>
+        <p class="flow-text">Discover the next bold idea to back</p>
+      </div>
+    </div>
+    <div class="col s4">
+      <div class="icon-block">
+        <p><i class="medium material-icons blue-text">insert_chart</i></p>
+        <%= link_to " create ", new_project_path, :class => 'btn-large blue' %>
+        <p class="flow-text">Create your next bold idea right now</p>
+      </div>
+    </div>
+    <div class="col s2"></div>
   </div>
-</div>
+
+  <div class="section">
+    <div class="row">
+      <blockquote>Fundie helps artists, creators and pioneers reach their funding goals and make their bold ideas come reality. Join the Fundie community today and explore or create the next bold idea.
+      </blockquote>
+    </div>
+  </div>

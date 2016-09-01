@@ -8,19 +8,20 @@
 
 ##### USER
 User.destroy_all
-howie = User.create :email => "howie@ga.co", :name => "howie", :password => 'chicken', :password_confirmation => 'chicken'
-badger = User.create :email => "badger@ga.co", :name => "badger", :password => 'chicken', :password_confirmation => 'chicken'
-wolf = User.create :email => "wolf@ga.co", :name => "wolf", :password => 'chicken', :password_confirmation => 'chicken'
-pete = User.create :email => "pete@ga.co", :name => "pete", :password => 'chicken', :password_confirmation => 'chicken'
-samit = User.create :email => "samit@ga.co", :name => "samit", :password => 'chicken', :password_confirmation => 'chicken'
-andrew = User.create :email => "andrew@ga.co", :name => "andrew", :password => 'chicken', :password_confirmation => 'chicken'
-arpan = User.create :email => "arpan@ga.co", :name => "arpan", :password => 'chicken', :password_confirmation => 'chicken'
-priyanka = User.create :email => "priyanka@ga.co", :name => "priyanka", :password => 'chicken', :password_confirmation => 'chicken'
-yangmei = User.create :email => "yangmei@ga.co", :name => "yangmei", :password => 'chicken', :password_confirmation => 'chicken'
-tom = User.create :email => "tom@ga.co", :name => "tom", :password => 'chicken', :password_confirmation => 'chicken'
-steve = User.create :email => "steve@ga.co", :name => "steve", :password => 'chicken', :password_confirmation => 'chicken'
-jong = User.create :email => "jong@ga.co", :name => "jong", :password => 'chicken', :password_confirmation => 'chicken'
-lucas = User.create :email => "lucas@ga.co", :name => "lucas", :password => 'chicken', :password_confirmation => 'chicken'
+howie = User.create :email => "howie@ga.co", :name => "howie", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/howie_ihzgvz'
+badger = User.create :email => "badger@ga.co", :name => "badger", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/chris_ejewbq'
+wolf = User.create :email => "wolf@ga.co", :name => "wolf", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/wolfga_yqxr3q'
+pete = User.create :email => "pete@ga.co", :name => "pete", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/pete_b0ttqh'
+samit = User.create :email => "samit@ga.co", :name => "samit", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/samit_hpamml'
+andrew = User.create :email => "andrew@ga.co", :name => "andrew", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/andrew_tr3hkz'
+arpan = User.create :email => "arpan@ga.co", :name => "arpan", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/arpan_nv4yfu'
+priyanka = User.create :email => "priyanka@ga.co", :name => "priyanka", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/priyanka_lavf6j'
+yangmei = User.create :email => "yangmei@ga.co", :name => "yangmei", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/yangmei_jyvim6'
+tom = User.create :email => "tom@ga.co", :name => "tom", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/tom_klfzgr'
+steve = User.create :email => "steve@ga.co", :name => "steve", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/steve_wb4cjm'
+jong = User.create :email => "jong@ga.co", :name => "jong", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/jong_qavv63'
+lucas = User.create :email => "lucas@ga.co", :name => "lucas", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/lucas_jqgqdv'
+meggan = User.create :email => "meggan@ga.co", :name => "meggan", :password => 'chicken', :password_confirmation => 'chicken', :image => 'GA WDI16/meggan'
 
 puts "\nCreate User test"
 p "User count: #{User.all.count}"
