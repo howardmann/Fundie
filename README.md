@@ -15,9 +15,9 @@ Online marketplace model where users can find projects and **pledge** to and/ or
 
 **Creating**  
 - Users create new projects by including a brief description, uploaded image, target $ funding amount and time deadline (max 6 months)
-- Projects *cannot* accept funds beyond the time deadline; however, projects *can* keep accepting funds beyond the target $ funding amount
+- Projects *cannot* accept funds beyond their time deadline; however, projects *can* keep accepting funds beyond their target $ funding amount
 
-Application also includes Project and Pledger dashboards tracking top performing projects and users across various metrics.
+Application also includes dashboards tracking top performing projects and users across various metrics.
 
 ## Technology stack
 - [Ruby on Rails](http://guides.rubyonrails.org/) and [PostgreSQL](https://www.postgresql.org/) for back-end build and database
@@ -26,9 +26,9 @@ Application also includes Project and Pledger dashboards tracking top performing
 - [Heroku](https://www.heroku.com/) for cloud deployment
 - [Cloudinary](http://cloudinary.com/) for image upload and hosting
 
-User login and authentication written with Rails with bcrypt encryption - no other third party Ruby gems used.
+User login and authentication written with Rails and bcrypt encryption - no additional third party Ruby gems used (i.e. Devise).
 
-## Features and APIs under consideration
+## New features under consideration
 - **Dynamic live loading** of dashboards using Backbone.js and Ajax fetch requests
 - **Order and checkout** for users to submit and track payment and address details for pledging
 - **Payments** integration with Stripe API for settling orders
