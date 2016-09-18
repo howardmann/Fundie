@@ -10,7 +10,7 @@ Project designed and deployed within four days as part of General Assembly's Web
 Online marketplace model where users can find projects and **pledge** to and/ or **create** new projects.
 
 **Pledging**
-- Users can find projects across various categories ranging from Art to Technology to support
+- Users can find projects across various categories to support, ranging from Art to Technology
 - All users begin with $5,000 in bank credit used for pledging. Users can increase their bank credit by creating new projects and receiving funding from other users
 
 **Creating**  
