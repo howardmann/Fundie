@@ -30,7 +30,7 @@ User login and authentication written with Rails and bcrypt encryption - no addi
 
 ## New features under consideration
 - **Dynamic live loading** of dashboards using Backbone.js and Ajax fetch requests
-- **Order and checkout** for users to submit and track payment and address details for pledging
+- **Order and checkout** for users to submit and track payment and shipping details for pledges
 - **Payments** integration with Stripe API for settling orders
 - **Twilio** API for SMS notifications of pledges to projects
 - **Mobile first responsive design** using Materialize CSS
