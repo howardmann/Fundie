@@ -7,17 +7,17 @@ A crowd funding online marketplace where users can post and fund project ideas. 
 Project designed and deployed within four days as part of General Assembly's Web Development Immersive bootcamp (week 6 project week).
 
 ## Features
-Online marketplace model where users can find projects to **pledge** funds to or **create** their own new projects.
+Online marketplace model where users can find projects and **pledge** to and/ or **create** new projects.
 
 **Pledging**
-- Users can find projects to fund across various categories ranging from Art to Technology
+- Users can find projects across various categories ranging from Art to Technology to support
 - All users begin with $5,000 in bank credit used for pledging. Users can increase their bank credit by creating new projects and receiving funding from other users
 
 **Creating**  
-- Users post new projects by including a brief description, uploaded image, target $ funding amount and time deadline (max 6 months)
-- Projects *cannot* accept funds beyond the time deadline; however, projects *can* keep accepting funds beyond the target
+- Users create new projects by including a brief description, uploaded image, target $ funding amount and time deadline (max 6 months)
+- Projects *cannot* accept funds beyond the time deadline; however, projects *can* keep accepting funds beyond the target $ funding amount
 
-Application also includes Project and Pledger dashboards tracking top performing projects and users by pledge amount.
+Application also includes Project and Pledger dashboards tracking top performing projects and users across various metrics.
 
 ## Technology stack
 - [Ruby on Rails](http://guides.rubyonrails.org/) and [PostgreSQL](https://www.postgresql.org/) for back-end build and database
